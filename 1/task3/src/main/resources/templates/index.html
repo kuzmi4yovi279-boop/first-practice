@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров</title>
+    <!-- Подключение внешних стилей из папки static/css/ -->
+    <link rel="stylesheet" href="/style/c.css" />
+</head>
+<body>
+
+    <h2>Список товаров</h2>
+    
+    <a th:href="@{/products/add}" class="btn">Добавить новый товар</a>
+
+    <div th:if="${#lists.isEmpty(products)}" class="empty-msg">
+        Товары отсутствуют. Добавьте первый товар!
+    </div>
+
+    <table th:unless="${#lists.isEmpty(products)}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}">1</td>
+                <td th:text="${product.name}">Название товара</td>
+                <td th:text="${product.price}">0.00</td>
+                <td th:text="${product.description}">Описание товара</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
